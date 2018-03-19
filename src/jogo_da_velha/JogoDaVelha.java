@@ -7,7 +7,7 @@ package jogo_da_velha;
 
 /**
  *
- * @author alve
+ * @author Alex Alves
  */
 public class JogoDaVelha {
 
