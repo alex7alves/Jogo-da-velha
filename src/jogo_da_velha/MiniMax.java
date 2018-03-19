@@ -9,6 +9,6 @@ package jogo_da_velha;
  *
  * @author Alex Alves
  */
-public class MinMax {
+public class MiniMax {
     
 }
