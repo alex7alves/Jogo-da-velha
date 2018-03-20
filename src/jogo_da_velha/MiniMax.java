@@ -68,7 +68,8 @@ public class MiniMax {
     public void setValor(int valor){
         this.valor = valor;
     }
-    public Tabuleiro getMelhorJogada() {
+
+    public Tabuleiro getMax() {
         Tabuleiro j = new Tabuleiro();
         int melhorValor = -100;
 
@@ -82,5 +83,17 @@ public class MiniMax {
         return j;
     }
 
-    
+    public Tabuleiro getMini() {
+        Tabuleiro j = new Tabuleiro();
+        int piorValor = 100;
+
+        for(Tabuleiro jogo : jogadas){
+            if (jogo.getValor() < piorValor){
+                j = jogo;
+                piorValor = jogo.getValor();
+            }
+        }
+        return j;
+    }
+  
 }
