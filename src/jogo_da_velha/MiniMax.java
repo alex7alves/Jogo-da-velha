@@ -5,12 +5,16 @@
  */
 package jogo_da_velha;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alex Alves
  */
 public class MiniMax {
     String[][] tabuleiro = new String[3][3];
+    ArrayList<Tabuleiro> jogadas = new ArrayList<Tabuleiro>();
+    int valor;
     
     public String getXY(int linha, int coluna){
         return tabuleiro[linha][coluna];
@@ -41,4 +45,42 @@ public class MiniMax {
         return (jogador.equals(tabuleiro[0][coluna]) && jogador.equals(tabuleiro[1][coluna]) && jogador.equals(tabuleiro[2][coluna]));
     }
 
+    public boolean isFim(){
+        return false;
+    }
+    public boolean Ganhar(){
+        return false;
+    }
+    public boolean Perder(){
+        return false;
+    }
+    public boolean Empatar(){
+        if(isFim() && Perder()==false && Ganhar()==false){
+            return true;
+        }
+        return false;
+    }
+    
+    public int getValor(){
+        return valor;
+    }
+
+    public void setValor(int valor){
+        this.valor = valor;
+    }
+    public Tabuleiro getMelhorJogada() {
+        Tabuleiro j = new Tabuleiro();
+        int melhorValor = -100;
+
+        for(Tabuleiro jogo : jogadas){
+            if (jogo.getValor() > melhorValor){
+                j = jogo;
+                melhorValor = jogo.getValor();
+
+            }
+        }
+        return j;
+    }
+
+    
 }
