@@ -14,7 +14,6 @@ public class Tabuleiro extends javax.swing.JFrame {
     /**
      * Creates new form Tabuleiro
      */
-    String[][]  tabuleiro = new String[3][3];
     public Tabuleiro() {
         initComponents();
     }
