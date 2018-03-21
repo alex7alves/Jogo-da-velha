@@ -11,14 +11,14 @@ import java.util.ArrayList;
  *
  * @author Alex Alves
  */
-public class MiniMax {
+public class Mapa {
     String[][] tabuleiro = new String[3][3];
     ArrayList<Tabuleiro> jogadas = new ArrayList<Tabuleiro>();
     int valor;
-    public MiniMax(Tabuleiro t){
+    public Mapa(Tabuleiro t){
         jogadas.add(t);
     }
-    public String getXY(int linha, int coluna){
+    public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna];
     }
 
