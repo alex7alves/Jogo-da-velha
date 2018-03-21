@@ -15,7 +15,9 @@ public class MiniMax {
     String[][] tabuleiro = new String[3][3];
     ArrayList<Tabuleiro> jogadas = new ArrayList<Tabuleiro>();
     int valor;
-    
+    public MiniMax(Tabuleiro t){
+        jogadas.add(t);
+    }
     public String getXY(int linha, int coluna){
         return tabuleiro[linha][coluna];
     }
@@ -30,32 +32,44 @@ public class MiniMax {
         return tabuleiro;
     }
     
-    private boolean DiagonalPrincipal(String jogador) {
+    private boolean DiagonalPrincipal(String jogador){
         return (jogador.equals(tabuleiro[0][0]) && jogador.equals(tabuleiro[1][1]) && jogador.equals(tabuleiro[2][2]));
     }
 
-    private boolean DiagonalSecundaria(String jogador) {
+    private boolean DiagonalSecundaria(String jogador){
         return (jogador.equals(tabuleiro[0][2]) && jogador.equals(tabuleiro[1][1]) && jogador.equals(tabuleiro[2][0]));
     }
-    private boolean Horizontal(int linha, String jogador) {
+    private boolean Horizontal(int linha, String jogador){
         return (jogador.equals(tabuleiro[linha][0]) && jogador.equals(tabuleiro[linha][1]) && jogador.equals(tabuleiro[linha][2]));
     }
 
-    private boolean Vertical(int coluna,String jogador) {
+    private boolean Vertical(int coluna,String jogador){
         return (jogador.equals(tabuleiro[0][coluna]) && jogador.equals(tabuleiro[1][coluna]) && jogador.equals(tabuleiro[2][coluna]));
     }
 
     public boolean isFim(){
+        int cont=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                if(tabuleiro[i][j] != null || !("".equals(tabuleiro[i][j])) ){
+                    cont++;
+                }
+            }
+            
+        }
+        if(cont ==9){
+            return true;
+        }
         return false;
     }
-    public boolean Ganhar(){
-        return false;
+    public boolean Ganhar(String jogador){
+        return (Vertical(0,jogador) || Vertical(1,jogador) || Vertical(2,jogador) 
+                || Horizontal(0,jogador) ||  Horizontal(1,jogador) || Horizontal(2,jogador)
+                || DiagonalPrincipal(jogador) || DiagonalSecundaria(jogador) );
     }
-    public boolean Perder(){
-        return false;
-    }
+
     public boolean Empatar(){
-        if(isFim() && Perder()==false && Ganhar()==false){
+        if(isFim() && Ganhar("X")==false && Ganhar("O")==false){
             return true;
         }
         return false;
