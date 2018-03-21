@@ -31,7 +31,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         b.setText("X");
     }
     public void setO(JButton b){
-         b.setText("O");
+        b.setText("O");
     }
     public void setFazerJogada(JButton b){
         if(isVazio(b)) {
@@ -41,6 +41,7 @@ public class Tabuleiro extends javax.swing.JFrame {
             jLabel5.setText("Posição já foi ocupada");
         }
     }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,7 +245,7 @@ public class Tabuleiro extends javax.swing.JFrame {
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
-         setFazerJogada(B01);
+        setFazerJogada(B01);
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed
@@ -252,7 +253,7 @@ public class Tabuleiro extends javax.swing.JFrame {
     }//GEN-LAST:event_B02ActionPerformed
 
     private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
-         setFazerJogada(B10);
+        setFazerJogada(B10);
     }//GEN-LAST:event_B10ActionPerformed
 
     private void B11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B11ActionPerformed
