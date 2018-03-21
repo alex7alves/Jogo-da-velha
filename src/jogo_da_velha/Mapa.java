@@ -13,11 +13,9 @@ import java.util.ArrayList;
  */
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
-    ArrayList<Tabuleiro> jogadas = new ArrayList<Tabuleiro>();
+    ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     int valor;
-    public Mapa(Tabuleiro t){
-        jogadas.add(t);
-    }
+    
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna];
     }
@@ -83,11 +81,11 @@ public class Mapa {
         this.valor = valor;
     }
 
-    public Tabuleiro getMax() {
-        Tabuleiro j = new Tabuleiro();
+    public Mapa getMax() {
+        Mapa j = new Mapa();
         int melhorValor = -100;
 
-        for(Tabuleiro jogo : jogadas){
+        for(Mapa jogo : jogadas){
             if (jogo.getValor() > melhorValor){
                 j = jogo;
                 melhorValor = jogo.getValor();
@@ -97,11 +95,11 @@ public class Mapa {
         return j;
     }
 
-    public Tabuleiro getMini() {
-        Tabuleiro j = new Tabuleiro();
+    public Mapa getMini() {
+        Mapa j = new Mapa();
         int piorValor = 100;
 
-        for(Tabuleiro jogo : jogadas){
+        for(Mapa jogo : jogadas){
             if (jogo.getValor() < piorValor){
                 j = jogo;
                 piorValor = jogo.getValor();
