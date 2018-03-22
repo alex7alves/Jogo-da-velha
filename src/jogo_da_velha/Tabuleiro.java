@@ -16,8 +16,20 @@ public class Tabuleiro extends javax.swing.JFrame {
     /**
      * Creates new form Tabuleiro
      */
+    String[][] mapa = new String[3][3]; 
     public Tabuleiro() {
         initComponents();
+    }
+    public void getMapa(){
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                System.out.print(" "+mapa[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    public void setMapa(int linha, int coluna,String s){
+                this.mapa[linha][coluna]= s;
     }
     public boolean isVazio(JButton b) {
         
@@ -242,10 +254,14 @@ public class Tabuleiro extends javax.swing.JFrame {
 
     private void B00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B00ActionPerformed
         setFazerJogada(B00);
+        setMapa(0,0,"X");
+        getMapa();
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
         setFazerJogada(B01);
+        setMapa(0,1,"X");
+        getMapa();
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed

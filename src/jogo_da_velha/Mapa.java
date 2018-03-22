@@ -16,6 +16,12 @@ public class Mapa {
     ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     int valor;
     
+    public Mapa(){
+        
+    }
+    public Mapa(Tabuleiro t){
+        tabuleiro = t.mapa;
+    }
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna];
     }
@@ -80,7 +86,7 @@ public class Mapa {
     public void setValor(int valor){
         this.valor = valor;
     }
-
+    
     public Mapa getMax() {
         Mapa j = new Mapa();
         int melhorValor = -100;
