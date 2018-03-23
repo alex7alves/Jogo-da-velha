@@ -18,8 +18,9 @@ public class Mapa {
     public Mapa(){
         
     }
-    public Mapa(String[][] s){
+    public Mapa(String[][] s,int level){
         tabuleiro = s;
+        profundidade = level;
         ShowTabuleiro();
     }
 

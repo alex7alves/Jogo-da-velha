@@ -17,6 +17,7 @@ public class Tabuleiro extends javax.swing.JFrame {
      * Creates new form Tabuleiro
      */
     String[][] mapa = new String[3][3]; 
+    int level;
     public Tabuleiro() {
         initComponents();
     }
@@ -55,7 +56,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
     }
     public void InitMapa(){
-       Mapa map = new Mapa(mapa);
+       Mapa map = new Mapa(mapa,level);
        map.ShowTabuleiro();
     }
     /**
@@ -89,10 +90,25 @@ public class Tabuleiro extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setText("Fácil");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Médio");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Difícil");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Jogo da velha");
 
@@ -303,6 +319,21 @@ public class Tabuleiro extends javax.swing.JFrame {
        setJogada(B22,2,2,"X");
        InitMapa();
     }//GEN-LAST:event_B22ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // level fácil
+        level =2; 
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Level médio
+        level =4;
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // Level difícil
+        level =8;
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
