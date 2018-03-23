@@ -17,7 +17,7 @@ public class Tabuleiro extends javax.swing.JFrame {
      * Creates new form Tabuleiro
      */
     String[][] mapa = new String[3][3]; 
-    int level;
+    int level=2; // começa no fácil
     public Tabuleiro() {
         initComponents();
     }
