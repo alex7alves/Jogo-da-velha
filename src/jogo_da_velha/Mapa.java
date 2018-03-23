@@ -19,13 +19,24 @@ public class Mapa {
     public Mapa(){
         
     }
-    public Mapa(Tabuleiro t){
-        tabuleiro = t.mapa;
-    }
-    public String getPos(int linha, int coluna){
-        return tabuleiro[linha][coluna];
+    public Mapa(String[][] s){
+        tabuleiro = s;
+        ShowTabuleiro();
     }
 
+    public String getPos(int linha, int coluna){
+        return tabuleiro[linha][coluna];
+       
+    }
+    public void ShowTabuleiro(){
+        System.out.println("Da classe mapa");
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                System.out.print(" "+tabuleiro[i][j]);
+            }
+            System.out.println();
+        }
+    }
     public void setX(int linha, int coluna){
         tabuleiro[linha][coluna] = "X";
     }

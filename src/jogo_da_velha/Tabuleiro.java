@@ -29,7 +29,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
     }
     public void setMapa(int linha, int coluna,String s){
-                this.mapa[linha][coluna]= s;
+        this.mapa[linha][coluna]= s;
     }
     public boolean isVazio(JButton b) {
         
@@ -45,15 +45,19 @@ public class Tabuleiro extends javax.swing.JFrame {
     public void setO(JButton b){
         b.setText("O");
     }
-    public void setFazerJogada(JButton b){
+    public void setJogada(JButton b,int linha,int coluna,String s){
         if(isVazio(b)) {
             setX(b);
+            setMapa(linha,coluna,s);
             jLabel5.setText("");
         }else{
             jLabel5.setText("Posição já foi ocupada");
         }
     }
-   
+    public void InitMapa(){
+       Mapa map = new Mapa(mapa);
+       map.ShowTabuleiro();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -253,43 +257,51 @@ public class Tabuleiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B00ActionPerformed
-        setFazerJogada(B00);
-        setMapa(0,0,"X");
+        setJogada(B00,0,0,"X");
         getMapa();
+        InitMapa();
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
-        setFazerJogada(B01);
-        setMapa(0,1,"X");
+        setJogada(B01,0,1,"X");
         getMapa();
+        InitMapa();
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed
-        setFazerJogada(B02);
+       setJogada(B02,0,2,"X");
+       InitMapa();
     }//GEN-LAST:event_B02ActionPerformed
 
     private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
-        setFazerJogada(B10);
+        setJogada(B10,1,0,"X");
+        getMapa();
+        InitMapa();
     }//GEN-LAST:event_B10ActionPerformed
 
     private void B11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B11ActionPerformed
-        setFazerJogada(B11);
+        setJogada(B11,1,1,"X");
+        InitMapa();
     }//GEN-LAST:event_B11ActionPerformed
 
     private void B12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B12ActionPerformed
-        setFazerJogada(B12);
+        setJogada(B12,1,2,"X");
+        InitMapa();
     }//GEN-LAST:event_B12ActionPerformed
 
     private void B20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B20ActionPerformed
-        setFazerJogada(B20);
+        setJogada(B20,2,0,"X");
+        InitMapa();
     }//GEN-LAST:event_B20ActionPerformed
 
     private void B21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B21ActionPerformed
-       setFazerJogada(B21);
+       setJogada(B21,2,1,"X");
+       InitMapa();
     }//GEN-LAST:event_B21ActionPerformed
 
     private void B22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B22ActionPerformed
-       setFazerJogada(B22);
+       setJogada(B22,2,2,"X");
+       InitMapa();
     }//GEN-LAST:event_B22ActionPerformed
 
     /**
