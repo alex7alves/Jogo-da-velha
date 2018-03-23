@@ -14,8 +14,7 @@ import java.util.ArrayList;
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
     ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
-    int valor;
-    
+    int valor, profundidade;
     public Mapa(){
         
     }
@@ -46,7 +45,12 @@ public class Mapa {
     public String[][] getTabuleiro(){
         return tabuleiro;
     }
-    
+     public boolean isVazio(int linha, int coluna){
+        if(tabuleiro[linha][coluna]==null){
+            return true;
+        }
+        return false;
+    }
     private boolean DiagonalPrincipal(String jogador){
         return (jogador.equals(tabuleiro[0][0]) && jogador.equals(tabuleiro[1][1]) && jogador.equals(tabuleiro[2][2]));
     }
@@ -97,7 +101,9 @@ public class Mapa {
     public void setValor(int valor){
         this.valor = valor;
     }
-    
+    public void setJogada(String[][] s){
+      
+    }
     public Mapa getMax() {
         Mapa j = new Mapa();
         int melhorValor = -100;
