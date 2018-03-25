@@ -25,9 +25,8 @@ public class Mapa {
       //  inicio = new Mapa(s,level);
         ShowTabuleiro();
     }
-    public void setInicio(String[][] s,int level){
-        inicio.profundidade = level;
-        inicio.tabuleiro =s;
+    public void setInicio(Mapa inicio){
+        this.inicio = inicio;
     }
     public Mapa getInicio(){
         return inicio;
