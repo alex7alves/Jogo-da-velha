@@ -56,8 +56,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
     }
     public void InitMapa(){
-       Mapa map = new Mapa(mapa,level);
-       map.ShowTabuleiro();
+       MiniMax m = new MiniMax(mapa,level);
     }
     /**
      * This method is called from within the constructor to initialize the form.

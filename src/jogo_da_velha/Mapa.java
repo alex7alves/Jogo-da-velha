@@ -22,7 +22,7 @@ public class Mapa {
     public Mapa(String[][] s,int level){
         tabuleiro = s;
         profundidade = level;
-        setInicio(s,level);
+      //  inicio = new Mapa(s,level);
         ShowTabuleiro();
     }
     public void setInicio(String[][] s,int level){
@@ -32,7 +32,9 @@ public class Mapa {
     public Mapa getInicio(){
         return inicio;
     }
-    
+  /*  public ArrayList<Mapa> getJogada(Mapa m){
+        jogadas = new ArrayList<>();
+    }*/
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna];
        
