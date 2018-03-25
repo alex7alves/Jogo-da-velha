@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
     ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
+    Mapa inicio;
     int valor, profundidade;
     public Mapa(){
         
@@ -21,9 +22,17 @@ public class Mapa {
     public Mapa(String[][] s,int level){
         tabuleiro = s;
         profundidade = level;
+        setInicio(s,level);
         ShowTabuleiro();
     }
-
+    public void setInicio(String[][] s,int level){
+        inicio.profundidade = level;
+        inicio.tabuleiro =s;
+    }
+    public Mapa getInicio(){
+        return inicio;
+    }
+    
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna];
        
@@ -35,6 +44,18 @@ public class Mapa {
                 System.out.print(" "+tabuleiro[i][j]);
             }
             System.out.println();
+        }
+    }
+    public int getJogadaFim() {
+        if (Ganhar("X")) {
+            valor=1;
+            return 1;
+        }else if(Ganhar("O")){
+            valor = -1;
+            return -1;
+        }else{
+            valor = 0;
+            return 0;
         }
     }
     public void setX(int linha, int coluna){
