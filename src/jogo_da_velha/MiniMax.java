@@ -30,6 +30,6 @@ public class MiniMax {
         ShowMapa(p);
         System.out.println(" Novamente ");
         m.setAdd(p);
-        //ShowMapa(m.jogadas[1]);
+        ShowMapa(m.jogadas.get(0));
     }
 }
