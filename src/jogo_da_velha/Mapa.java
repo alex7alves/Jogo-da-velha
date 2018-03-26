@@ -31,6 +31,9 @@ public class Mapa {
     public Mapa getInicio(){
         return inicio;
     }
+    public void setAdd(Mapa m){
+        jogadas.add(m);
+    }
   /*  public ArrayList<Mapa> getJogada(Mapa m){
         jogadas = new ArrayList<>();
     }*/

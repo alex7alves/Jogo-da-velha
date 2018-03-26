@@ -15,7 +15,7 @@ public class MiniMax {
         m = new Mapa(s,level);
         m.setInicio(m);
         p = m.getInicio();
-        ShowMapa(p);
+        Controlador();
     }
     public void ShowMapa(Mapa p){
         System.out.println("Da classe MiniMax");
@@ -25,5 +25,11 @@ public class MiniMax {
             }
             System.out.println();
         }
+    }
+    public void Controlador(){
+        ShowMapa(p);
+        System.out.println(" Novamente ");
+        m.setAdd(p);
+        //ShowMapa(m.jogadas[1]);
     }
 }
