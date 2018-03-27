@@ -127,8 +127,8 @@ public class Mapa {
     public void setValor(int valor){
         this.valor = valor;
     }
-    public void setJogada(String[][] s){
-      
+    public ArrayList<Mapa> getJogadas(){
+        return jogadas;
     }
     public Mapa getMax() {
         Mapa j = new Mapa();
@@ -156,5 +156,19 @@ public class Mapa {
         }
         return j;
     }
-  
+    public ArrayList<Mapa> getJogadasParciais(Mapa m, String jogador) {
+       // ArrayList<Mapa> aux = new ArrayList<Mapa>();
+       jogadas = new ArrayList<>();
+        for (int y= 0; y < 3; y++) {
+            for (int x = 0; x < 3; x++) {
+                if(m.getPos(y,x)==null && "O".equals(jogador)){
+                    m.setO(y,x);
+                }else if(m.getPos(y,x)==null && "X".equals(jogador)){
+                    m.setX(y,x);
+                }
+            }
+        }
+        return jogadas;
+    }
+
 }
