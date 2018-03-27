@@ -16,6 +16,7 @@ public class Mapa {
     ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     Mapa inicio;
     int valor, profundidade;
+    boolean temArray =false;
     public Mapa(){
         
     }
@@ -156,9 +157,8 @@ public class Mapa {
         }
         return j;
     }
-    public ArrayList<Mapa> getJogadasParciais(Mapa m, String jogador) {
-       // ArrayList<Mapa> aux = new ArrayList<Mapa>();
-       jogadas = new ArrayList<>();
+    public void setJogadasParciais(Mapa m, String jogador){
+
         for (int y= 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 if(m.getPos(y,x)==null && "O".equals(jogador)){
@@ -166,9 +166,9 @@ public class Mapa {
                 }else if(m.getPos(y,x)==null && "X".equals(jogador)){
                     m.setX(y,x);
                 }
+               
             }
         }
-        return jogadas;
     }
-
+    
 }
