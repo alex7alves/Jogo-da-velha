@@ -5,6 +5,8 @@
  */
 package jogo_da_velha;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Alex Alves
@@ -15,6 +17,7 @@ public class MiniMax {
         m = new Mapa(s,level);
         m.setInicio(m);
         p = m.getInicio();
+        m.setJogadasParciais(m, "X");
         Controlador();
     }
     public void ShowMapa(Mapa p){
@@ -27,9 +30,6 @@ public class MiniMax {
         }
     }
     public void Controlador(){
-        ShowMapa(p);
-        System.out.println(" Novamente ");
-        m.setAdd(p);
-        ShowMapa(m.jogadas.get(0));
+       ArrayList<Mapa> v = m.setJogadasParciais(p,"O");
     }
 }

@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
-    ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     Mapa inicio;
     int valor, profundidade;
     boolean temArray =false;
@@ -32,15 +31,11 @@ public class Mapa {
     public Mapa getInicio(){
         return inicio;
     }
-    public void setAdd(Mapa m){
+   /* public void setAdd(Mapa m){
         jogadas.add(m);
-    }
-  /*  public ArrayList<Mapa> getJogada(Mapa m){
-        jogadas = new ArrayList<>();
     }*/
     public String getPos(int linha, int coluna){
-        return tabuleiro[linha][coluna];
-       
+        return tabuleiro[linha][coluna]; 
     }
     public void ShowTabuleiro(){
         System.out.println("Da classe mapa");
@@ -128,10 +123,10 @@ public class Mapa {
     public void setValor(int valor){
         this.valor = valor;
     }
-    public ArrayList<Mapa> getJogadas(){
+  /*  public ArrayList<Mapa> getJogadas(){
         return jogadas;
-    }
-    public Mapa getMax() {
+    }*/
+    public Mapa getMax( ArrayList<Mapa> jogadas) {
         Mapa j = new Mapa();
         int melhorValor = -100;
 
@@ -145,7 +140,7 @@ public class Mapa {
         return j;
     }
 
-    public Mapa getMini() {
+    public Mapa getMini( ArrayList<Mapa> jogadas) {
         Mapa j = new Mapa();
         int piorValor = 100;
 
@@ -157,18 +152,21 @@ public class Mapa {
         }
         return j;
     }
-    public void setJogadasParciais(Mapa m, String jogador){
-
+    public ArrayList<Mapa> setJogadasParciais(Mapa mp, String jogador){
+        ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
         for (int y= 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
+                Mapa m = new Mapa();
+                m = mp;
                 if(m.getPos(y,x)==null && "O".equals(jogador)){
                     m.setO(y,x);
                 }else if(m.getPos(y,x)==null && "X".equals(jogador)){
                     m.setX(y,x);
                 }
-               
+                jogadas.add(m);
             }
         }
+        return jogadas;
     }
     
 }
