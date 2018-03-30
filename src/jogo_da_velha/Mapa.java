@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
+    ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     Mapa inicio;
     int valor, profundidade;
     boolean temArray =false;
@@ -22,8 +23,6 @@ public class Mapa {
     public Mapa(String[][] s,int level){
         tabuleiro = s;
         profundidade = level;
-      //  inicio = new Mapa(s,level);
-        ShowTabuleiro();
     }
     public void setInicio(Mapa inicio){
         this.inicio = inicio;
@@ -31,9 +30,9 @@ public class Mapa {
     public Mapa getInicio(){
         return inicio;
     }
-   /* public void setAdd(Mapa m){
+    public void setAdd(Mapa m){
         jogadas.add(m);
-    }*/
+    }
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna]; 
     }
@@ -123,10 +122,10 @@ public class Mapa {
     public void setValor(int valor){
         this.valor = valor;
     }
-  /*  public ArrayList<Mapa> getJogadas(){
+    public ArrayList<Mapa> getJogadas(){
         return jogadas;
-    }*/
-    public Mapa getMax( ArrayList<Mapa> jogadas) {
+    }
+    public Mapa getMax( /*ArrayList<Mapa> jogadas*/) {
         Mapa j = new Mapa();
         int melhorValor = -100;
 
@@ -140,7 +139,7 @@ public class Mapa {
         return j;
     }
 
-    public Mapa getMini( ArrayList<Mapa> jogadas) {
+    public Mapa getMini( /*ArrayList<Mapa> jogadas*/) {
         Mapa j = new Mapa();
         int piorValor = 100;
 
@@ -153,7 +152,7 @@ public class Mapa {
         return j;
     }
     public ArrayList<Mapa> setJogadasParciais(Mapa mp, String jogador){
-        ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
+       /// ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
         for (int y= 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 Mapa m = new Mapa();
@@ -168,5 +167,21 @@ public class Mapa {
         }
         return jogadas;
     }
-    
+    public ArrayList<Mapa> setJogadasArray(ArrayList<Mapa> jogadas, String jogador){
+        ArrayList<Mapa> jogos = jogadas;
+        for(Mapa j : jogos) {
+            for (int y= 0; y < 3; y++) {
+                for (int x = 0; x < 3; x++) {
+                    
+                    if(j.getPos(y,x)==null && "O".equals(jogador)){
+                        j.setO(y,x);
+                    }else if(j.getPos(y,x)==null && "X".equals(jogador)){
+                        j.setX(y,x);
+                    }
+                    jogadas.add(j);
+                }
+            }
+        }
+        return jogadas;
+    }
 }

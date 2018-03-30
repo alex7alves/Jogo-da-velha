@@ -30,6 +30,9 @@ public class MiniMax {
         }
     }
     public void Controlador(){
-       ArrayList<Mapa> v = m.setJogadasParciais(p,"O");
+       ArrayList<Mapa> jogos = m.setJogadasParciais(p,"O");
+       for( Mapa j : jogos){
+           j.setJogadasParciais(j,"X");
+       }
     }
 }
