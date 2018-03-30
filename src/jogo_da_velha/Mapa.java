@@ -13,6 +13,7 @@ import java.util.ArrayList;
  */
 public class Mapa {
     String[][] tabuleiro = new String[3][3];
+    String QuemJoga;
     ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
     Mapa inicio;
     int valor, profundidade;
@@ -32,6 +33,12 @@ public class Mapa {
     }
     public void setAdd(Mapa m){
         jogadas.add(m);
+    }
+    public void setJogador(String jogador){
+        QuemJoga=jogador;
+    }
+    public String getJogador(){
+        return QuemJoga;
     }
     public String getPos(int linha, int coluna){
         return tabuleiro[linha][coluna]; 
@@ -152,11 +159,12 @@ public class Mapa {
         return j;
     }
     public ArrayList<Mapa> setJogadasParciais(Mapa mp, String jogador){
-       /// ArrayList<Mapa> jogadas = new ArrayList<Mapa>();
+        
         for (int y= 0; y < 3; y++) {
             for (int x = 0; x < 3; x++) {
                 Mapa m = new Mapa();
                 m = mp;
+                m.setJogador(jogador);
                 if(m.getPos(y,x)==null && "O".equals(jogador)){
                     m.setO(y,x);
                 }else if(m.getPos(y,x)==null && "X".equals(jogador)){
@@ -167,21 +175,5 @@ public class Mapa {
         }
         return jogadas;
     }
-    public ArrayList<Mapa> setJogadasArray(ArrayList<Mapa> jogadas, String jogador){
-        ArrayList<Mapa> jogos = jogadas;
-        for(Mapa j : jogos) {
-            for (int y= 0; y < 3; y++) {
-                for (int x = 0; x < 3; x++) {
-                    
-                    if(j.getPos(y,x)==null && "O".equals(jogador)){
-                        j.setO(y,x);
-                    }else if(j.getPos(y,x)==null && "X".equals(jogador)){
-                        j.setX(y,x);
-                    }
-                    jogadas.add(j);
-                }
-            }
-        }
-        return jogadas;
-    }
+    
 }
