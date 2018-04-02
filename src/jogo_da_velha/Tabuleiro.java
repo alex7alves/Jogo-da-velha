@@ -38,6 +38,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         if(x==3) dificil =true;
         computador=c;
         map= new MapaTab();
+        InitMapa();
         
     }
     public Ponto getPonto(){
@@ -97,9 +98,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         if(linha==2 && coluna ==0) setO(B20);
         if(linha==2 && coluna ==1) setO(B21);
         if(linha==2 && coluna ==2) setO(B22);
-        
-        
-        
+     
     }
     public void InitMapa(){
       System.out.println("Ponto "+ponto.x+", "+ponto.y);
@@ -109,13 +108,16 @@ public class Tabuleiro extends javax.swing.JFrame {
             if(facil){
                 jLabel6.setText("Fácil");
                 p = new Ponto(0,1);
+                setInterface(p.x,p.y);
             }else if(medio){
                 jLabel6.setText("Médio");
                 p = new Ponto(0,0);
+                setInterface(p.x,p.y);
             }else {
                 // dificil comeca no centro
                 jLabel6.setText("Difícil");
                 p = new Ponto(1,1);
+                setInterface(p.x,p.y);
             }
             
             boolean z =map.isJogou(p, MapaTab.jogador_X);
