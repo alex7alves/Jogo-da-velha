@@ -17,67 +17,23 @@ public class Tabuleiro extends javax.swing.JFrame {
     /**
      * Creates new form Tabuleiro
      */
-    String[][] mapa = new String[3][3]; 
-    int level=2; // começa no fácil
+    String[][] mapa = new String[3][3];
+    boolean vez =false;
+    Ponto ponto= new Ponto(0,0);
+    MapaTab map ;
     public Tabuleiro() {
+
         initComponents();
+        map= new MapaTab();
         
-        
-        System.out.println("Vai se lascar");
-        MapaTab map = new MapaTab();
-        System.out.println("Vai se lascar");
-        Scanner scanner = new Scanner(System.in);
-        map.showMapa();
-        System.out.println("Selecione a vez : 1 - computado X | 2 usuario  O");
-        int ler = scanner.nextInt();
-        String vez=null;
-        if(ler ==1){
-            vez="X";
-        }
-        if(vez== MapaTab.jogador_X){
-            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
-            Ponto p = new Ponto(1,1);
-            boolean z =map.isJogou(p, MapaTab.jogador_X);
-            System.out.println("Bool "+z + " de "+ ler);
-            map.showMapa();
-        }
-        while(!(map.isFimJogo())){
-            boolean ok=true;
-            
-            do {
-                if(!ok){
-                    System.out.println("falhou");
-                }
-                System.out.println("Seu movimento ");
-                Ponto usuario = new Ponto(scanner.nextInt(),scanner.nextInt());
-                ok=map.isJogou(usuario, MapaTab.jogador_O);
-                
-                
-            }while(!ok);
-            map.showMapa();
-            if(map.isFimJogo()){
-                break;
-            }
-            if(map.Venceu(MapaTab.jogador_O)){
-                break;
-            }
-            if(map.Venceu(MapaTab.jogador_X)){
-                break;
-            }
-            map.MiniMax(0, MapaTab.jogador_X);
-            System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
-            map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
-            map.showMapa();
-        }
-        if(map.Venceu(MapaTab.jogador_X)){
-            System.out.println("Voce perdeu ");
-        }else if(map.Venceu(MapaTab.jogador_O)){
-            System.out.println("Voce venceu ");
-        }else{
-            System.out.println("Deu empate ");
-        }
     }
-    
+    public Ponto getPonto(){
+        return ponto;
+    }
+    public void setPonto(int x,int y){
+        ponto.x=x;
+        ponto.y=y;
+    }
     public void getMapa(){
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
@@ -107,65 +63,78 @@ public class Tabuleiro extends javax.swing.JFrame {
         if(isVazio(b)) {
             setX(b);
             setMapa(linha,coluna,s);
+            setPonto(linha, coluna);
             jLabel5.setText("");
         }else{
             jLabel5.setText("Posição já foi ocupada");
         }
     }
+    
+    public void setInterface(int linha,int coluna){
+        
+        if(linha==0 && coluna ==0) setO(B00);
+        if(linha==0 && coluna ==1) setO(B01);
+        if(linha==0 && coluna ==2) setO(B02);
+        if(linha==1 && coluna ==0) setO(B10);
+        if(linha==1 && coluna ==1) setO(B11);
+        if(linha==1 && coluna ==2) setO(B12);
+        if(linha==2 && coluna ==0) setO(B20);
+        if(linha==2 && coluna ==1) setO(B21);
+        if(linha==2 && coluna ==2) setO(B22);
+        
+        
+        
+    }
     public void InitMapa(){
-      System.out.println("Vai se lascar");
-        MapaTab map = new MapaTab();
-        System.out.println("Vai se lascar");
-        Scanner scanner = new Scanner(System.in);
-        map.showMapa();
-        System.out.println("Selecione a vez : 1 - computado X | 2 usuario  O");
-        int ler = scanner.nextInt();
-        String vez=null;
-        if(ler ==1){
-            vez="X";
-        }
-        if(vez== MapaTab.jogador_X){
-            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
-            Ponto p = new Ponto(1,1);
-            boolean z =map.isJogou(p, MapaTab.jogador_X);
-            System.out.println("Bool "+z + " de "+ ler);
-            map.showMapa();
-        }
-        while(!(map.isFimJogo())){
-            boolean ok=true;
+      System.out.println("Ponto "+ponto.x+", "+ponto.y);
+        
+        if(vez==true){
             
-            do {
-                if(!ok){
-                    System.out.println("falhou");
-                }
-                System.out.println("Seu movimento ");
-                Ponto usuario = new Ponto(scanner.nextInt(),scanner.nextInt());
-                ok=map.isJogou(usuario, MapaTab.jogador_O);
-                
-                
-            }while(!ok);
             map.showMapa();
-            if(map.isFimJogo()){
-                break;
-            }
-            if(map.Venceu(MapaTab.jogador_O)){
-                break;
+            System.out.println("Ponto "+ponto.x+", "+ponto.y);
+
+            
+        
+            //while(!(map.isFimJogo())){
+                boolean ok=true;
+
+                do {
+                    if(!ok){
+                        System.out.println("falhou");
+                    }
+                    if(vez==true){
+                       Ponto usuario = getPonto();
+                       System.out.println("Ponto "+usuario.toString());
+                       ok=map.isJogou(usuario, MapaTab.jogador_O);
+                    }
+                    vez=false;
+
+                }while(!ok);
+                map.showMapa();
+                /*if(map.isFimJogo()){
+                    break;
+                }
+                if(map.Venceu(MapaTab.jogador_O)){
+                    break;
+                }
+                if(map.Venceu(MapaTab.jogador_X)){
+                    break;
+                }*/
+                map.MiniMax(0, MapaTab.jogador_X);
+                System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
+                setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
+                setMapa(map.MovimentoComputador.x,map.MovimentoComputador.y,"X");
+                map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
+                map.showMapa();
             }
             if(map.Venceu(MapaTab.jogador_X)){
-                break;
+                System.out.println("Voce perdeu ");
+            }else if(map.Venceu(MapaTab.jogador_O)){
+                System.out.println("Voce venceu ");
+            }else{
+                System.out.println("Deu empate ");
             }
-            map.MiniMax(0, MapaTab.jogador_X);
-            System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
-            map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
-            map.showMapa();
-        }
-        if(map.Venceu(MapaTab.jogador_X)){
-            System.out.println("Voce perdeu ");
-        }else if(map.Venceu(MapaTab.jogador_O)){
-            System.out.println("Voce venceu ");
-        }else{
-            System.out.println("Deu empate ");
-        }
+       // }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -226,54 +195,63 @@ public class Tabuleiro extends javax.swing.JFrame {
 
         jLabel3.setText("jLabel3");
 
+        B00.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B00.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B00ActionPerformed(evt);
             }
         });
 
+        B01.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B01.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B01ActionPerformed(evt);
             }
         });
 
+        B02.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B02.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B02ActionPerformed(evt);
             }
         });
 
+        B12.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B12ActionPerformed(evt);
             }
         });
 
+        B10.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B10ActionPerformed(evt);
             }
         });
 
+        B11.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B11ActionPerformed(evt);
             }
         });
 
+        B22.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B22ActionPerformed(evt);
             }
         });
 
+        B20.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B20ActionPerformed(evt);
             }
         });
 
+        B21.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B21ActionPerformed(evt);
@@ -382,65 +360,74 @@ public class Tabuleiro extends javax.swing.JFrame {
 
     private void B00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B00ActionPerformed
         setJogada(B00,0,0,"X");
-        getMapa();
+        vez=true;
         InitMapa();
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
         setJogada(B01,0,1,"X");
-        getMapa();
+        vez=true;
         InitMapa();
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed
        setJogada(B02,0,2,"X");
+       vez=true;
        InitMapa();
     }//GEN-LAST:event_B02ActionPerformed
 
     private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
         setJogada(B10,1,0,"X");
-        getMapa();
+        vez=true;
         InitMapa();
     }//GEN-LAST:event_B10ActionPerformed
 
     private void B11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B11ActionPerformed
         setJogada(B11,1,1,"X");
+        vez=true;
         InitMapa();
     }//GEN-LAST:event_B11ActionPerformed
 
     private void B12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B12ActionPerformed
         setJogada(B12,1,2,"X");
+        vez=true;
         InitMapa();
+
     }//GEN-LAST:event_B12ActionPerformed
 
     private void B20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B20ActionPerformed
         setJogada(B20,2,0,"X");
+        vez=true;
         InitMapa();
+ 
     }//GEN-LAST:event_B20ActionPerformed
 
     private void B21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B21ActionPerformed
        setJogada(B21,2,1,"X");
+       vez=true;
        InitMapa();
+
     }//GEN-LAST:event_B21ActionPerformed
 
     private void B22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B22ActionPerformed
        setJogada(B22,2,2,"X");
+       vez=true;
        InitMapa();
     }//GEN-LAST:event_B22ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // level fácil
-        level =2; 
+      
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Level médio
-        level =4;
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // Level difícil
-        level =8;
+      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
