@@ -5,6 +5,7 @@
  */
 package jogo_da_velha;
 
+import java.util.Scanner;
 import javax.swing.JButton;
 
 /**
@@ -20,7 +21,63 @@ public class Tabuleiro extends javax.swing.JFrame {
     int level=2; // começa no fácil
     public Tabuleiro() {
         initComponents();
+        
+        
+        System.out.println("Vai se lascar");
+        MapaTab map = new MapaTab();
+        System.out.println("Vai se lascar");
+        Scanner scanner = new Scanner(System.in);
+        map.showMapa();
+        System.out.println("Selecione a vez : 1 - computado X | 2 usuario  O");
+        int ler = scanner.nextInt();
+        String vez=null;
+        if(ler ==1){
+            vez="X";
+        }
+        if(vez== MapaTab.jogador_X){
+            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
+            Ponto p = new Ponto(1,1);
+            boolean z =map.isJogou(p, MapaTab.jogador_X);
+            System.out.println("Bool "+z + " de "+ ler);
+            map.showMapa();
+        }
+        while(!(map.isFimJogo())){
+            boolean ok=true;
+            
+            do {
+                if(!ok){
+                    System.out.println("falhou");
+                }
+                System.out.println("Seu movimento ");
+                Ponto usuario = new Ponto(scanner.nextInt(),scanner.nextInt());
+                ok=map.isJogou(usuario, MapaTab.jogador_O);
+                
+                
+            }while(!ok);
+            map.showMapa();
+            if(map.isFimJogo()){
+                break;
+            }
+            if(map.Venceu(MapaTab.jogador_O)){
+                break;
+            }
+            if(map.Venceu(MapaTab.jogador_X)){
+                break;
+            }
+            map.MiniMax(0, MapaTab.jogador_X);
+            System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
+            map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
+            map.showMapa();
+        }
+        if(map.Venceu(MapaTab.jogador_X)){
+            System.out.println("Voce perdeu ");
+        }else if(map.Venceu(MapaTab.jogador_O)){
+            System.out.println("Voce venceu ");
+        }else{
+            System.out.println("Deu empate ");
+        }
     }
+    
     public void getMapa(){
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
@@ -56,7 +113,59 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
     }
     public void InitMapa(){
-       MiniMax m = new MiniMax(mapa,level);
+      System.out.println("Vai se lascar");
+        MapaTab map = new MapaTab();
+        System.out.println("Vai se lascar");
+        Scanner scanner = new Scanner(System.in);
+        map.showMapa();
+        System.out.println("Selecione a vez : 1 - computado X | 2 usuario  O");
+        int ler = scanner.nextInt();
+        String vez=null;
+        if(ler ==1){
+            vez="X";
+        }
+        if(vez== MapaTab.jogador_X){
+            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
+            Ponto p = new Ponto(1,1);
+            boolean z =map.isJogou(p, MapaTab.jogador_X);
+            System.out.println("Bool "+z + " de "+ ler);
+            map.showMapa();
+        }
+        while(!(map.isFimJogo())){
+            boolean ok=true;
+            
+            do {
+                if(!ok){
+                    System.out.println("falhou");
+                }
+                System.out.println("Seu movimento ");
+                Ponto usuario = new Ponto(scanner.nextInt(),scanner.nextInt());
+                ok=map.isJogou(usuario, MapaTab.jogador_O);
+                
+                
+            }while(!ok);
+            map.showMapa();
+            if(map.isFimJogo()){
+                break;
+            }
+            if(map.Venceu(MapaTab.jogador_O)){
+                break;
+            }
+            if(map.Venceu(MapaTab.jogador_X)){
+                break;
+            }
+            map.MiniMax(0, MapaTab.jogador_X);
+            System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
+            map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
+            map.showMapa();
+        }
+        if(map.Venceu(MapaTab.jogador_X)){
+            System.out.println("Voce perdeu ");
+        }else if(map.Venceu(MapaTab.jogador_O)){
+            System.out.println("Voce venceu ");
+        }else{
+            System.out.println("Deu empate ");
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
