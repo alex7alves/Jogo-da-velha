@@ -29,6 +29,17 @@ public class Tabuleiro extends javax.swing.JFrame {
         map= new MapaTab();
         
     }
+    
+    public Tabuleiro(int x, boolean c) {
+
+        initComponents();
+        if(x==1) facil =true;
+        if(x==2) medio =true;
+        if(x==3) dificil =true;
+        computador=c;
+        map= new MapaTab();
+        
+    }
     public Ponto getPonto(){
         return ponto;
     }
