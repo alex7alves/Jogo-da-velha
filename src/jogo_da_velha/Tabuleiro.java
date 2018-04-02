@@ -5,6 +5,7 @@
  */
 package jogo_da_velha;
 
+import java.awt.Color;
 import java.util.Scanner;
 import javax.swing.JButton;
 
@@ -55,9 +56,11 @@ public class Tabuleiro extends javax.swing.JFrame {
     }
     public void setX(JButton b){
         b.setText("X");
+        b.setBackground(Color.red);
     }
     public void setO(JButton b){
         b.setText("O");
+        b.setBackground(Color.BLUE);
     }
     public void setJogada(JButton b,int linha,int coluna,String s){
         if(isVazio(b)) {
