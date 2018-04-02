@@ -8,6 +8,7 @@ package jogo_da_velha;
 import java.awt.Color;
 import java.util.Scanner;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,8 @@ public class Tabuleiro extends javax.swing.JFrame {
 
         initComponents();
         map= new MapaTab();
-        
+        jLabel3.setText("");
+        jLabel5.setText("");
     }
     
     public Tabuleiro(int x, boolean c) {
@@ -38,6 +40,8 @@ public class Tabuleiro extends javax.swing.JFrame {
         if(x==3) dificil =true;
         computador=c;
         map= new MapaTab();
+        jLabel3.setText("");
+        jLabel5.setText("");
         InitMapa();
         
     }
@@ -78,9 +82,10 @@ public class Tabuleiro extends javax.swing.JFrame {
     }
     public void setJogada(JButton b,int linha,int coluna,String s){
         if(isVazio(b)) {
-            setX(b);
+            setO(b);
             setMapa(linha,coluna,s);
             setPonto(linha, coluna);
+            InitMapa();
             jLabel5.setText("");
         }else{
             jLabel5.setText("Posição já foi ocupada");
@@ -89,15 +94,15 @@ public class Tabuleiro extends javax.swing.JFrame {
     
     public void setInterface(int linha,int coluna){
         
-        if(linha==0 && coluna ==0) setO(B00);
-        if(linha==0 && coluna ==1) setO(B01);
-        if(linha==0 && coluna ==2) setO(B02);
-        if(linha==1 && coluna ==0) setO(B10);
-        if(linha==1 && coluna ==1) setO(B11);
-        if(linha==1 && coluna ==2) setO(B12);
-        if(linha==2 && coluna ==0) setO(B20);
-        if(linha==2 && coluna ==1) setO(B21);
-        if(linha==2 && coluna ==2) setO(B22);
+        if(linha==0 && coluna ==0) setX(B00);
+        if(linha==0 && coluna ==1) setX(B01);
+        if(linha==0 && coluna ==2) setX(B02);
+        if(linha==1 && coluna ==0) setX(B10);
+        if(linha==1 && coluna ==1) setX(B11);
+        if(linha==1 && coluna ==2) setX(B12);
+        if(linha==2 && coluna ==0) setX(B20);
+        if(linha==2 && coluna ==1) setX(B21);
+        if(linha==2 && coluna ==2) setX(B22);
      
     }
     public void InitMapa(){
@@ -123,6 +128,16 @@ public class Tabuleiro extends javax.swing.JFrame {
             boolean z =map.isJogou(p, MapaTab.jogador_X);
             map.showMapa();
         }
+        if(facil){
+            jLabel6.setText("Fácil");
+      
+       }else if(medio){
+            jLabel6.setText("Médio");
+              
+        }else {
+            // dificil comeca no centro
+            jLabel6.setText("Difícil");          
+       }
         if(vez==true){
             
             map.showMapa();
@@ -163,11 +178,20 @@ public class Tabuleiro extends javax.swing.JFrame {
                 map.showMapa();
             }
             if(map.Venceu(MapaTab.jogador_X)){
-                System.out.println("Voce perdeu ");
+                jLabel3.setText("Você perdeu !");
+                JOptionPane.showMessageDialog(null,"Você perdeu !");
+                
             }else if(map.Venceu(MapaTab.jogador_O)){
-                System.out.println("Voce venceu ");
+                jLabel3.setText("Você venceu !");
+                JOptionPane.showMessageDialog(null,"Você venceu !");
+                
             }else{
-                System.out.println("Deu empate ");
+                if(map.getGerar().isEmpty()){
+                    jLabel3.setText("Deu empate !");
+                    JOptionPane.showMessageDialog(null,"Deu empate !");
+                    
+                }
+                
             }
        // }
     }
@@ -371,60 +395,63 @@ public class Tabuleiro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void B00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B00ActionPerformed
-        setJogada(B00,0,0,"X");
         vez=true;
-        InitMapa();
+        setJogada(B00,0,0,"O");
+        
+       // InitMapa();
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
-        setJogada(B01,0,1,"X");
         vez=true;
-        InitMapa();
+        setJogada(B01,0,1,"O");
+        
+      //  InitMapa();
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed
-       setJogada(B02,0,2,"X");
-       vez=true;
-       InitMapa();
+        vez=true;
+        setJogada(B02,0,2,"O");
+       
+      // InitMapa();
     }//GEN-LAST:event_B02ActionPerformed
 
     private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
-        setJogada(B10,1,0,"X");
         vez=true;
+        setJogada(B10,1,0,"O");
         InitMapa();
     }//GEN-LAST:event_B10ActionPerformed
 
     private void B11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B11ActionPerformed
-        setJogada(B11,1,1,"X");
         vez=true;
-        InitMapa();
+        setJogada(B11,1,1,"O");
+       // InitMapa();
     }//GEN-LAST:event_B11ActionPerformed
 
     private void B12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B12ActionPerformed
-        setJogada(B12,1,2,"X");
         vez=true;
-        InitMapa();
+        setJogada(B12,1,2,"O");
+        //InitMapa();
 
     }//GEN-LAST:event_B12ActionPerformed
 
     private void B20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B20ActionPerformed
-        setJogada(B20,2,0,"X");
         vez=true;
-        InitMapa();
+        setJogada(B20,2,0,"O");
+      //  InitMapa();
  
     }//GEN-LAST:event_B20ActionPerformed
 
     private void B21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B21ActionPerformed
-       setJogada(B21,2,1,"X");
        vez=true;
-       InitMapa();
+       setJogada(B21,2,1,"O");
+       //InitMapa();
 
     }//GEN-LAST:event_B21ActionPerformed
 
     private void B22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B22ActionPerformed
-       setJogada(B22,2,2,"X");
        vez=true;
-       InitMapa();
+       setJogada(B22,2,2,"O");
+      // InitMapa();
     }//GEN-LAST:event_B22ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
