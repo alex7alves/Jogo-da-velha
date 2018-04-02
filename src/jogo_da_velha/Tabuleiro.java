@@ -20,6 +20,7 @@ public class Tabuleiro extends javax.swing.JFrame {
      */
     String[][] mapa = new String[3][3];
     boolean vez =false;
+    boolean computador =false,facil=false,medio=false,dificil=false;
     Ponto ponto= new Ponto(0,0);
     MapaTab map ;
     public Tabuleiro() {
@@ -61,6 +62,7 @@ public class Tabuleiro extends javax.swing.JFrame {
     public void setO(JButton b){
         b.setText("O");
         b.setBackground(Color.BLUE);
+        
     }
     public void setJogada(JButton b,int linha,int coluna,String s){
         if(isVazio(b)) {
@@ -90,7 +92,12 @@ public class Tabuleiro extends javax.swing.JFrame {
     }
     public void InitMapa(){
       System.out.println("Ponto "+ponto.x+", "+ponto.y);
-        
+        if(computador){
+            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
+            Ponto p = new Ponto(1,1);
+            boolean z =map.isJogou(p, MapaTab.jogador_X);
+            map.showMapa();
+        }
         if(vez==true){
             
             map.showMapa();
@@ -302,19 +309,20 @@ public class Tabuleiro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(B02, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel5)
-                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
                                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButton4))
-                                .addGap(23, 23, 23)))))
+                                .addGap(23, 23, 23))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
