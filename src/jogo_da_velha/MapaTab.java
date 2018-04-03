@@ -24,6 +24,15 @@ public class MapaTab {
     private String[][] tabuleiro = new String[3][3];
     public Ponto MovimentoComputador; 
     
+    int facil=0,medio=0;
+    int x;
+    
+    public MapaTab(){
+        
+    }
+    public MapaTab(int x){
+        this.x=x;
+    }
     public boolean isFimJogo(){
         return Venceu(jogador_X) || Venceu(jogador_O) || getGerar().isEmpty(); 
            
@@ -103,6 +112,7 @@ public class MapaTab {
         for(int i=0;i<gerar.size();i++){
             Ponto ponto = gerar.get(i);
             if(turno==jogador_X){
+                ponto =setRRules(x, ponto);
                 isJogou(ponto,jogador_X); // joga no ponto 
                 int valor= MiniMax(profundidade+1,jogador_O);
                 max = Math.max(valor,max);
@@ -135,5 +145,41 @@ public class MapaTab {
             tabuleiro[ponto.x][ponto.y]=sem_jogador;
         }
         return turno ==jogador_X ? max:min;
+    }
+    
+    // Função para forçar a facilitar o jogo
+    private Ponto setRRules(int x,Ponto p){
+        Ponto u = new Ponto(0,1);
+        if(x==1) {
+            
+            if(tabuleiro[0][1]==null){
+                u.x=0;
+                u.y=1;
+            }else if(tabuleiro[1][0]==null){
+                u.x=1;
+                u.y=0;
+            } else {
+                u=p;
+            }
+        
+        }
+        else if(x==2) {
+            if(tabuleiro[2][2]==null){
+                u.x=2;
+                u.y=2;
+            } else if(tabuleiro[0][0]==null){
+                u.x=0;
+                u.y=0;
+            }
+            
+            else {
+                u=p;
+            }
+            
+        }else{
+            u=p;
+        }
+     
+        return u;
     }
 }

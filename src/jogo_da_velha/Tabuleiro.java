@@ -39,7 +39,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         if(x==2) medio =true;
         if(x==3) dificil =true;
         computador=c;
-        map= new MapaTab();
+        map= new MapaTab(x);
         jLabel3.setText("");
         jLabel5.setText("");
         InitMapa();
