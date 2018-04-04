@@ -112,11 +112,11 @@ public class Tabuleiro extends javax.swing.JFrame {
             Ponto p;
             if(facil){
                 jLabel6.setText("Fácil");
-                p = new Ponto(0,1);
+                p = new Ponto(1,1);
                 setInterface(p.x,p.y);
             }else if(medio){
                 jLabel6.setText("Médio");
-                p = new Ponto(0,0);
+                p = new Ponto(1,1);
                 setInterface(p.x,p.y);
             }else {
                 // dificil comeca no centro

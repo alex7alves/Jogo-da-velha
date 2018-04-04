@@ -152,12 +152,12 @@ public class MapaTab {
         Ponto u = new Ponto(0,1);
         if(x==1) {
             
-            if(tabuleiro[0][1]==null){
+            if(tabuleiro[1][1]==null){
+                u.x=1;
+                u.y=1;
+            }else if(tabuleiro[0][1]==null){
                 u.x=0;
                 u.y=1;
-            }else if(tabuleiro[1][0]==null){
-                u.x=1;
-                u.y=0;
             } else {
                 u=p;
             }
@@ -167,9 +167,13 @@ public class MapaTab {
             if(tabuleiro[2][2]==null){
                 u.x=2;
                 u.y=2;
-            } else if(tabuleiro[0][0]==null){
+           /* } else if(tabuleiro[0][0]==null){
                 u.x=0;
                 u.y=0;
+            }*/
+            }else if(tabuleiro[1][1]==null){
+                u.x=1;
+                u.y=1;
             }
             
             else {
