@@ -115,7 +115,7 @@ public class Tabuleiro extends javax.swing.JFrame {
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
             }else if(medio){
-                jLabel6.setText("Médio");
+                jLabel6.setText("Normal");
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
             }else {
