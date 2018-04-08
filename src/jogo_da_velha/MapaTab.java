@@ -13,11 +13,7 @@ import java.util.List;
  * @author Alex Alves
  */
 public class MapaTab {
-    /*public static final int sem_jogador=0;
-    public static final int jogador_X=1;
-    public static final int jogador_O=2;
-    private int[][] tabuleiro = new int[3][3];
-    */
+   
     public static final String sem_jogador=null;
     public static final String jogador_X="X";
     public static final String jogador_O="O";
@@ -80,9 +76,6 @@ public class MapaTab {
     }
     
     public boolean isJogou(Ponto p, String jogador){
-      /*  if(tabuleiro[p.x][p.y]==sem_jogador){
-            return false;
-        }*/
         tabuleiro[p.x][p.y]=jogador;
         return true;
     }
@@ -113,6 +106,7 @@ public class MapaTab {
             Ponto ponto = gerar.get(i);
             if(turno==jogador_X){
                 ponto =setRRules(x, ponto);
+                gerar.set(i, ponto);
                 isJogou(ponto,jogador_X); // joga no ponto 
                 int valor= MiniMax(profundidade+1,jogador_O);
                 max = Math.max(valor,max);
@@ -167,10 +161,6 @@ public class MapaTab {
             if(tabuleiro[2][2]==null){
                 u.x=2;
                 u.y=2;
-           /* } else if(tabuleiro[0][0]==null){
-                u.x=0;
-                u.y=0;
-            }*/
             }else if(tabuleiro[1][1]==null){
                 u.x=1;
                 u.y=1;
