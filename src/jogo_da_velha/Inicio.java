@@ -79,7 +79,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Quem começa ?");
+        jLabel2.setText("Qual a dificuldade");
 
         jButton6.setText("Médio");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +142,7 @@ public class Inicio extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
