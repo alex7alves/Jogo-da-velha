@@ -6,6 +6,7 @@
 package jogo_da_velha;
 
 import java.awt.Color;
+import java.util.Random;
 import java.util.Scanner;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -108,7 +109,6 @@ public class Tabuleiro extends javax.swing.JFrame {
     public void InitMapa(){
       System.out.println("Ponto "+ponto.x+", "+ponto.y);
         if(computador){
-            //Ponto p = new Ponto(random.nextInt(3),random.nextInt(3));
             Ponto p;
             if(facil){
                 jLabel6.setText("Fácil");
@@ -126,7 +126,6 @@ public class Tabuleiro extends javax.swing.JFrame {
             }
             
             boolean z =map.isJogou(p, MapaTab.jogador_X);
-            map.showMapa();
         }
         if(facil){
             jLabel6.setText("Fácil");
@@ -135,17 +134,10 @@ public class Tabuleiro extends javax.swing.JFrame {
             jLabel6.setText("Médio");
               
         }else {
-            // dificil comeca no centro
             jLabel6.setText("Difícil");          
        }
         if(vez==true){
-            
-            map.showMapa();
-            System.out.println("Ponto "+ponto.x+", "+ponto.y);
 
-            
-        
-            //while(!(map.isFimJogo())){
                 boolean ok=true;
 
                 do {
@@ -161,15 +153,7 @@ public class Tabuleiro extends javax.swing.JFrame {
 
                 }while(!ok);
                 map.showMapa();
-                /*if(map.isFimJogo()){
-                    break;
-                }
-                if(map.Venceu(MapaTab.jogador_O)){
-                    break;
-                }
-                if(map.Venceu(MapaTab.jogador_X)){
-                    break;
-                }*/
+                
                 map.MiniMax(0, MapaTab.jogador_X);
                 System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
                 setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
@@ -193,7 +177,6 @@ public class Tabuleiro extends javax.swing.JFrame {
                 }
                 
             }
-       // }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -398,61 +381,54 @@ public class Tabuleiro extends javax.swing.JFrame {
     private void B00ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B00ActionPerformed
         vez=true;
         setJogada(B00,0,0,"O");
-        
-       // InitMapa();
+
     }//GEN-LAST:event_B00ActionPerformed
 
     private void B01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B01ActionPerformed
         vez=true;
         setJogada(B01,0,1,"O");
-        
-      //  InitMapa();
+
     }//GEN-LAST:event_B01ActionPerformed
 
     private void B02ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B02ActionPerformed
         vez=true;
         setJogada(B02,0,2,"O");
-       
-      // InitMapa();
+
     }//GEN-LAST:event_B02ActionPerformed
 
     private void B10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B10ActionPerformed
         vez=true;
         setJogada(B10,1,0,"O");
-        InitMapa();
+
     }//GEN-LAST:event_B10ActionPerformed
 
     private void B11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B11ActionPerformed
         vez=true;
         setJogada(B11,1,1,"O");
-       // InitMapa();
+
     }//GEN-LAST:event_B11ActionPerformed
 
     private void B12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B12ActionPerformed
         vez=true;
         setJogada(B12,1,2,"O");
-        //InitMapa();
 
     }//GEN-LAST:event_B12ActionPerformed
 
     private void B20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B20ActionPerformed
         vez=true;
         setJogada(B20,2,0,"O");
-      //  InitMapa();
  
     }//GEN-LAST:event_B20ActionPerformed
 
     private void B21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B21ActionPerformed
        vez=true;
        setJogada(B21,2,1,"O");
-       //InitMapa();
 
     }//GEN-LAST:event_B21ActionPerformed
 
     private void B22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B22ActionPerformed
        vez=true;
        setJogada(B22,2,2,"O");
-      // InitMapa();
     }//GEN-LAST:event_B22ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
