@@ -4,5 +4,5 @@ Repositório destinado a abrigar a implementação do jogo da velha feito em Jav
 
 	O minimax busca maximizar a chance de vitória da maquina e minimizar a do jogador.
 	
-
+O algoritmo minimax foi implementado  na metodologia de busca heurística.
 	
