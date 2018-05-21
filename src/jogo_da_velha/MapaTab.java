@@ -126,7 +126,7 @@ public class MapaTab {
             System.out.println();
         }
     }
-    public void setTabInt(String jogador)
+    public void setTabInt(int jogador)
     {
         
         for(int i=0;i<3;i++){
@@ -137,7 +137,7 @@ public class MapaTab {
                 }else if("O".equals(tabuleiro[i][j])){
                     tabuleiroInt[i][j]=-1;
                 }else{
-                    if("X".equals(jogador)){
+                    if(jogador==1){
                         tabuleiroInt[i][j]=1;
                     }else{
                         tabuleiroInt[i][j]=-1;
@@ -146,7 +146,61 @@ public class MapaTab {
             }
         }
     }
-    
+    public int minimax(int profundidade,int jogador){
+        int valor;
+        if(profundidade==0 ){
+            // inicializa a matriz de inteiros e conta as chances de vitoria
+            setTabInt(jogador);
+            setContador(jogador);
+            // faz o mesmo para o outro jogador
+            setTabInt(-1*jogador);
+            setContador(-1*jogador);
+            
+            valor = contMax - contMin;
+            return valor;
+        }
+        List<Ponto> gerar = getGerar();
+        if(gerar.isEmpty()){
+            profundidade =0;
+        }
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<gerar.size();i++){
+            Ponto ponto = gerar.get(i);
+            if(jogador==1){
+               
+               
+                isJogou(ponto,jogador_X); // joga no ponto 
+                int v= minimax(profundidade-1,-1);
+                max = Math.max(v,max);
+                if(profundidade==0){
+                    MovimentoComputador=ponto;
+                    System.out.println(" Valor do resultado do pc para a posicao "+ ponto+" = " +v );
+                }
+              
+                
+                if(contMax > contMin){
+                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
+                    break;
+                }
+                if(i==gerar.size()-1 && max<0){
+                    if(profundidade ==0){
+                        MovimentoComputador=ponto;
+                    }
+                }
+            }else if(jogador==-1){
+                isJogou(ponto,jogador_O); // joga no ponto 
+                int v= minimax(profundidade-1,-1);
+                min = Math.min(v,min);
+                if((-1*contMin)>contMax){
+                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
+                    break;
+                }
+            }
+            tabuleiro[ponto.x][ponto.y]=sem_jogador;
+        }
+        return jogador==1 ? max:min;
+    }
     
     
    /* public int MiniMax(int profundidade, String turno){
