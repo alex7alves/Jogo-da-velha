@@ -176,54 +176,42 @@ public class MapaTab {
             return valor;
         }
        
-  
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         
             
-            if(jogador==1){
-                List<Ponto> gerar = getGerar();
-                // guardara o melhor ponto do max
-                Ponto melhorPonto = new Ponto(1,1) ; // necessario instanciar
-                for(int i=0;i<gerar.size();i++){  
-                    Ponto ponto = gerar.get(i);
-                    isJogou(ponto,jogador_X); // joga no ponto 
-                   // for(int j=0;j<gerar.size()-1;j++){
-                        int v = minimax(profundidade-1,-1);
-                    //}
-                    
-                   
-                    //max = Math.max(vetor[i],max);
-                    if(v > max){
-                        max= v;
-                        melhorPonto = ponto;
-                    }
-                   
-                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
-                }
-                MovimentoComputador=melhorPonto;
-               
-                
-            }else if(jogador==-1){
-                List<Ponto> gerar = getGerar();
-                for(int i=0;i<gerar.size();i++){  
-                    Ponto ponto = gerar.get(i);
-                    isJogou(ponto,jogador_O); // joga no ponto 
-                    int v= minimax(profundidade-1,1);
-                    min = Math.min(v,min);
-                    
-                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
-                }
-                
-            }
+        if(jogador==1){
             
-        
+            List<Ponto> gerar = getGerar();
+            // guardara o melhor ponto do max
+            Ponto melhorPonto = new Ponto(1,1) ; // necessario instanciar
+            for(int i=0;i<gerar.size();i++){  
+                Ponto ponto = gerar.get(i);
+                isJogou(ponto,jogador_X); // joga no ponto 
+
+                int v = minimax(profundidade-1,-1);
+                if(v >= max){
+                    max= v;
+                    melhorPonto = ponto;
+                }  
+                tabuleiro[ponto.x][ponto.y]=sem_jogador;
+            }
+            MovimentoComputador=melhorPonto;
+                  
+        }else if(jogador==-1){
+            List<Ponto> gerar = getGerar();
+            for(int i=0;i<gerar.size();i++){  
+                Ponto ponto = gerar.get(i);
+                isJogou(ponto,jogador_O); // joga no ponto 
+                int v= minimax(profundidade-1,1);
+                min = Math.min(v,min);
+                    
+                tabuleiro[ponto.x][ponto.y]=sem_jogador;
+            }    
+        } 
         return jogador==1 ? max:min;
     }
-    
-    
-    
-   
+
     public int MiniMax(int profundidade, String turno){
         if(Venceu(jogador_X)){
             return 1;
@@ -240,8 +228,7 @@ public class MapaTab {
         for(int i=0;i<gerar.size();i++){
             Ponto ponto = gerar.get(i);
             if(turno==jogador_X){
-               
-               
+                           
                 isJogou(ponto,jogador_X); // joga no ponto 
                 int valor= MiniMax(profundidade+1,jogador_O);
                 max = Math.max(valor,max);
