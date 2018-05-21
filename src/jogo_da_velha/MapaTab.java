@@ -63,6 +63,40 @@ public class MapaTab {
     public boolean Vertical(int i,String jogador){
         return (tabuleiro[0][i]==tabuleiro[1][i] && tabuleiro[0][i]==tabuleiro[2][i] && tabuleiro[0][i]==jogador);
     }
+    /******************Metodos em inteiro *************/
+    
+     private boolean DiagonalPrincipal(int jogador){
+        return (tabuleiroInt[0][0]==tabuleiroInt[1][1] && tabuleiroInt[0][0]==tabuleiroInt[2][2] && tabuleiroInt[0][0]==jogador);
+    }
+    private boolean DiagonalSecundaria(int jogador){
+        return (tabuleiroInt[0][2]==tabuleiroInt[1][1] && tabuleiroInt[0][2]==tabuleiroInt[2][0] && tabuleiroInt[0][2]==jogador);
+    }
+    public boolean Horizontal(int i,int jogador){
+        return (tabuleiroInt[i][0]==tabuleiroInt[i][1] && tabuleiroInt[i][0]==tabuleiroInt[i][2] && tabuleiroInt[i][0]==jogador);
+    }
+    public boolean Vertical(int i,int jogador){
+        return (tabuleiroInt[0][i]==tabuleiroInt[1][i] && tabuleiroInt[0][i]==tabuleiroInt[2][i] && tabuleiroInt[0][i]==jogador);
+    }
+    
+    public void setContador(int jogador) {
+        // venceu nas diagonais
+        int aux=0;
+        
+        if(DiagonalPrincipal(jogador) || DiagonalSecundaria(jogador)){
+           aux ++;
+        }
+        // venceu nas horiznontais ou verticais
+        for(int i=0;i<3;i++){
+            if(Horizontal(i,jogador) || Vertical(i,jogador)){
+               aux++;
+            }
+        }
+        if(jogador==1){
+            contMax=aux;
+        }else if(jogador== -1){
+            contMin = (-1*aux);
+        }
+    }
     
     // Gerar o mapa
     public List<Ponto> getGerar(){
@@ -84,7 +118,7 @@ public class MapaTab {
     }
     
     public void showMapa(){
-         System.out.println();
+        System.out.println();
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                 System.out.print(" "+tabuleiro[i][j]);
@@ -94,7 +128,7 @@ public class MapaTab {
     }
     public void setTabInt(String jogador)
     {
-        int valor=0;
+        
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
                
