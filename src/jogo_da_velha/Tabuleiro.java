@@ -25,6 +25,7 @@ public class Tabuleiro extends javax.swing.JFrame {
     boolean computador =false,facil=false,medio=false,dificil=false;
     Ponto ponto= new Ponto(0,0);
     MapaTab map ;
+    int profundidade=0;
     public Tabuleiro() {
 
         initComponents();
@@ -129,12 +130,13 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
         if(facil){
             jLabel6.setText("Fácil");
-      
+            
        }else if(medio){
             jLabel6.setText("Médio");
-              
+             profundidade=2;
         }else {
-            jLabel6.setText("Difícil");          
+            jLabel6.setText("Difícil");   
+            profundidade=4;
        }
         if(vez==true){
 
@@ -155,7 +157,7 @@ public class Tabuleiro extends javax.swing.JFrame {
                 map.showMapa();
                 
                 //map.MiniMax(0, MapaTab.jogador_X);
-                map.minimax(2,1);
+                map.minimax(profundidade,1);
                 System.out.println("\n Cot max e min "+ map.getContMax() +" "+map.getContMin());
                 System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
                 setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
