@@ -20,6 +20,9 @@ public class MapaTab {
     private String[][] tabuleiro = new String[3][3];
     public Ponto MovimentoComputador; 
     
+    private int tabuleiroInt[][] = new int[3][3];
+    private int contMin,contMax;
+    
     int facil=0,medio=0;
     int x;
     
@@ -89,6 +92,80 @@ public class MapaTab {
             System.out.println();
         }
     }
+    public void setTabInt(String jogador)
+    {
+        int valor=0;
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+               
+                if("X".equals(tabuleiro[i][j])){
+                    tabuleiroInt[i][j]=1;
+                }else if("O".equals(tabuleiro[i][j])){
+                    tabuleiroInt[i][j]=-1;
+                }else{
+                    if("X".equals(jogador)){
+                        tabuleiroInt[i][j]=1;
+                    }else{
+                        tabuleiroInt[i][j]=-1;
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    
+   /* public int MiniMax(int profundidade, String turno){
+        if(Venceu(jogador_X)){
+            return 1;
+        }
+        if(Venceu(jogador_O)){
+            return -1;
+        }
+        List<Ponto> gerar = getGerar();
+        if(gerar.isEmpty()){
+            return 0;
+        }
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i=0;i<gerar.size();i++){
+            Ponto ponto = gerar.get(i);
+            if(turno==jogador_X){
+               
+               
+                isJogou(ponto,jogador_X); // joga no ponto 
+                int valor= MiniMax(profundidade+1,jogador_O);
+                max = Math.max(valor,max);
+                if(profundidade==0){
+                    System.out.println(" Valor do resultado do pc para a posicao "+ ponto+" = " +valor );
+                }
+                if(valor >=0){
+                    if(profundidade ==0){
+                        MovimentoComputador=ponto;
+                    }
+                }
+                if(valor ==1){
+                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
+                    break;
+                }
+                if(i==gerar.size()-1 && max<0){
+                    if(profundidade ==0){
+                        MovimentoComputador=ponto;
+                    }
+                }
+            }else if(turno ==jogador_O){
+                isJogou(ponto,jogador_O); // joga no ponto 
+                int valor= MiniMax(profundidade+1,jogador_X);
+                min = Math.min(valor,min);
+                if(valor ==-1){
+                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
+                    break;
+                }
+            }
+            tabuleiro[ponto.x][ponto.y]=sem_jogador;
+        }
+        return turno ==jogador_X ? max:min;
+    }*/
     public int MiniMax(int profundidade, String turno){
         if(Venceu(jogador_X)){
             return 1;
@@ -105,8 +182,8 @@ public class MapaTab {
         for(int i=0;i<gerar.size();i++){
             Ponto ponto = gerar.get(i);
             if(turno==jogador_X){
-                ponto =setRRules(x, ponto);
-                gerar.set(i, ponto);
+               
+               
                 isJogou(ponto,jogador_X); // joga no ponto 
                 int valor= MiniMax(profundidade+1,jogador_O);
                 max = Math.max(valor,max);
@@ -140,7 +217,6 @@ public class MapaTab {
         }
         return turno ==jogador_X ? max:min;
     }
-    
     // Função para forçar a facilitar o jogo
     private Ponto setRRules(int x,Ponto p){
         Ponto u = new Ponto(0,1);
