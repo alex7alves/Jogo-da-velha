@@ -116,14 +116,16 @@ public class Tabuleiro extends javax.swing.JFrame {
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
             }else if(medio){
-                jLabel6.setText("Normal");
+                jLabel6.setText("medio");
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
+                profundidade=2;
             }else {
                 // dificil comeca no centro
                 jLabel6.setText("Difícil");
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
+                profundidade=4;
             }
             
             boolean z =map.isJogou(p, MapaTab.jogador_X);
@@ -156,7 +158,9 @@ public class Tabuleiro extends javax.swing.JFrame {
                 }while(!ok);
                 map.showMapa();
                 
-                //map.MiniMax(0, MapaTab.jogador_X);
+                if(dificil){
+                    profundidade = map.getGerar().size();
+                }
                 map.minimax(profundidade,1);
                 System.out.println("\n Cot max e min "+ map.getContMax() +" "+map.getContMin());
                 System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
