@@ -154,7 +154,9 @@ public class Tabuleiro extends javax.swing.JFrame {
                 }while(!ok);
                 map.showMapa();
                 
-                map.MiniMax(0, MapaTab.jogador_X);
+                //map.MiniMax(0, MapaTab.jogador_X);
+                map.minimax(2,1);
+                System.out.println("\n Cot max e min "+ map.getContMax() +" "+map.getContMin());
                 System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
                 setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
                 setMapa(map.MovimentoComputador.x,map.MovimentoComputador.y,"X");

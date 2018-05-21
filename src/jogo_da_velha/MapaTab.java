@@ -21,7 +21,7 @@ public class MapaTab {
     public Ponto MovimentoComputador; 
     
     private int tabuleiroInt[][] = new int[3][3];
-    private int contMin,contMax;
+    private int contMin=0,contMax=0;
     
     int facil=0,medio=0;
     int x;
@@ -126,6 +126,13 @@ public class MapaTab {
             System.out.println();
         }
     }
+    public int getContMax(){
+        return contMax;
+    }
+    public int getContMin(){
+        return contMin;
+    }
+    
     public void setTabInt(int jogador)
     {
         
@@ -148,7 +155,7 @@ public class MapaTab {
     }
     public int minimax(int profundidade,int jogador){
         int valor;
-        if(profundidade==0 ){
+        if(profundidade==0){
             // inicializa a matriz de inteiros e conta as chances de vitoria
             setTabInt(jogador);
             setContador(jogador);
@@ -156,12 +163,13 @@ public class MapaTab {
             setTabInt(-1*jogador);
             setContador(-1*jogador);
             
-            valor = contMax - contMin;
+            valor = getContMax() - getContMin();
             return valor;
         }
         List<Ponto> gerar = getGerar();
         if(gerar.isEmpty()){
-            profundidade =0;
+            return 0;
+          
         }
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
@@ -173,18 +181,18 @@ public class MapaTab {
                 isJogou(ponto,jogador_X); // joga no ponto 
                 int v= minimax(profundidade-1,-1);
                 max = Math.max(v,max);
-                if(profundidade==0){
+                if(profundidade==0 || getContMax() > getContMin()){
                     MovimentoComputador=ponto;
                     System.out.println(" Valor do resultado do pc para a posicao "+ ponto+" = " +v );
                 }
               
                 
-                if(contMax > contMin){
+                if(getContMax() > getContMin()){
                     tabuleiro[ponto.x][ponto.y]=sem_jogador;
                     break;
                 }
                 if(i==gerar.size()-1 && max<0){
-                    if(profundidade ==0){
+                    if(profundidade ==0 || getContMax() > getContMin()){
                         MovimentoComputador=ponto;
                     }
                 }
@@ -192,7 +200,7 @@ public class MapaTab {
                 isJogou(ponto,jogador_O); // joga no ponto 
                 int v= minimax(profundidade-1,-1);
                 min = Math.min(v,min);
-                if((-1*contMin)>contMax){
+                if((-1*getContMin())>getContMax()){
                     tabuleiro[ponto.x][ponto.y]=sem_jogador;
                     break;
                 }
