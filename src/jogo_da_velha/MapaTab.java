@@ -263,38 +263,26 @@ public class MapaTab {
         return turno ==jogador_X ? max:min;
     }
     // Função para forçar a facilitar o jogo
-    private Ponto setRRules(int x,Ponto p){
-        Ponto u = new Ponto(0,1);
-        if(x==1) {
-            
-            if(tabuleiro[1][1]==null){
-                u.x=1;
-                u.y=1;
-            }else if(tabuleiro[0][1]==null){
-                u.x=0;
-                u.y=1;
-            } else {
-                u=p;
-            }
-        
-        }
-        else if(x==2) {
-            if(tabuleiro[2][2]==null){
-                u.x=2;
-                u.y=2;
-            }else if(tabuleiro[1][1]==null){
-                u.x=1;
-                u.y=1;
-            }
-            
-            else {
-                u=p;
-            }
-            
-        }else{
-            u=p;
-        }
+    public void setRRules(){
      
-        return u;
+    for(int i=0;i<3;i++){
+            if(tabuleiro[i][0]==tabuleiro[i][1] && tabuleiro[i][0]=="O" ){
+                if(tabuleiro[i][2]==sem_jogador){
+                    MovimentoComputador = new Ponto(i,2);
+                }
+               
+            }else if(tabuleiro[i][2]==tabuleiro[i][1] && tabuleiro[i][2]=="O" ){
+                if(tabuleiro[i][0]==sem_jogador){
+                    MovimentoComputador = new Ponto(i,0);
+                }
+               
+            }
+            else if(tabuleiro[i][0]==tabuleiro[i][2] && tabuleiro[i][2]=="O" ){
+                if(tabuleiro[i][1]==sem_jogador){
+                    MovimentoComputador = new Ponto(i,1);
+                }
+               
+            }
+        }
     }
 }

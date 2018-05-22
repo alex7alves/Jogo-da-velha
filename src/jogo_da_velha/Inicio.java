@@ -73,7 +73,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel2.setText("Qual a dificuldade");
 
-        jButton6.setText("Medio");
+        jButton6.setText("Fácil");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -165,7 +165,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
        // Dificudade medio
-        dificuldade=2;
+        dificuldade=1;
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed

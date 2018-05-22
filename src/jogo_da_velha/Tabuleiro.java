@@ -26,6 +26,7 @@ public class Tabuleiro extends javax.swing.JFrame {
     Ponto ponto= new Ponto(0,0);
     MapaTab map ;
     int profundidade=0;
+    boolean vitoria=false;
     public Tabuleiro() {
 
         initComponents();
@@ -115,6 +116,7 @@ public class Tabuleiro extends javax.swing.JFrame {
                 jLabel6.setText("Fácil");
                 p = new Ponto(1,1);
                 setInterface(p.x,p.y);
+                profundidade=2;
             }else if(medio){
                 jLabel6.setText("medio");
                 p = new Ponto(1,1);
@@ -132,6 +134,7 @@ public class Tabuleiro extends javax.swing.JFrame {
         }
         if(facil){
             jLabel6.setText("Fácil");
+            profundidade=2;
             
        }else if(medio){
             jLabel6.setText("Médio");
@@ -141,7 +144,7 @@ public class Tabuleiro extends javax.swing.JFrame {
             profundidade=4;
        }
         if(vez==true){
-
+             Ponto p = new Ponto(1,1);
                 boolean ok=true;
 
                 do {
@@ -163,22 +166,26 @@ public class Tabuleiro extends javax.swing.JFrame {
                 }
                 map.minimax(profundidade,1);
                 System.out.println("\n Cot max e min "+ map.getContMax() +" "+map.getContMin());
+                if(dificil){
+                    map.setRRules();
+                }
                 System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
                 setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
                 setMapa(map.MovimentoComputador.x,map.MovimentoComputador.y,"X");
                 map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
                 map.showMapa();
+          
             }
-            if(map.Venceu(MapaTab.jogador_X)){
+            if(map.Venceu(MapaTab.jogador_X) && vitoria ==false){
                 jLabel3.setText("Você perdeu !");
                 JOptionPane.showMessageDialog(null,"Você perdeu !");
-                
-            }else if(map.Venceu(MapaTab.jogador_O)){
+                vitoria=true;
+            }else if(map.Venceu(MapaTab.jogador_O )&& vitoria==false){
                 jLabel3.setText("Você venceu !");
                 JOptionPane.showMessageDialog(null,"Você venceu !");
-                
+                vitoria=true;
             }else{
-                if(map.getGerar().isEmpty()){
+                if(map.getGerar().isEmpty() && vitoria==false){
                     jLabel3.setText("Deu empate !");
                     JOptionPane.showMessageDialog(null,"Deu empate !");
                     
