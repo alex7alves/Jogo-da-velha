@@ -160,9 +160,6 @@ public class Tabuleiro extends javax.swing.JFrame {
                 }while(!ok);
                 map.showMapa();
                 
-                if(dificil){
-                    profundidade = map.getGerar().size();
-                }
                 map.minimax(profundidade,1);
                 if(dificil){
                     map.setRRules();

@@ -171,8 +171,9 @@ public class MapaTab {
             // faz o mesmo para o outro jogador
             setTabInt(-1*jogador);
             setContador(-1*jogador);
-            
-            valor = getContMax() - getContMin();
+       
+            valor = getContMax() + getContMin();
+           
             return valor;
         }
        
@@ -190,7 +191,7 @@ public class MapaTab {
                 isJogou(ponto,jogador_X); // joga no ponto 
 
                 int v = minimax(profundidade-1,-1);
-                if(v >= max){
+                if(v > max){
                     max= v;
                     melhorPonto = ponto;
                 }  
