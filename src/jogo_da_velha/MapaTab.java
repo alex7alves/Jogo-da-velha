@@ -212,56 +212,7 @@ public class MapaTab {
         return jogador==1 ? max:min;
     }
 
-    public int MiniMax(int profundidade, String turno){
-        if(Venceu(jogador_X)){
-            return 1;
-        }
-        if(Venceu(jogador_O)){
-            return -1;
-        }
-        List<Ponto> gerar = getGerar();
-        if(gerar.isEmpty()){
-            return 0;
-        }
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        for(int i=0;i<gerar.size();i++){
-            Ponto ponto = gerar.get(i);
-            if(turno==jogador_X){
-                           
-                isJogou(ponto,jogador_X); // joga no ponto 
-                int valor= MiniMax(profundidade+1,jogador_O);
-                max = Math.max(valor,max);
-                if(profundidade==0){
-                    System.out.println(" Valor do resultado do pc para a posicao "+ ponto+" = " +valor );
-                }
-                if(valor >=0){
-                    if(profundidade ==0){
-                        MovimentoComputador=ponto;
-                    }
-                }
-                if(valor ==1){
-                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
-                    break;
-                }
-                if(i==gerar.size()-1 && max<0){
-                    if(profundidade ==0){
-                        MovimentoComputador=ponto;
-                    }
-                }
-            }else if(turno ==jogador_O){
-                isJogou(ponto,jogador_O); // joga no ponto 
-                int valor= MiniMax(profundidade+1,jogador_X);
-                min = Math.min(valor,min);
-                if(valor ==-1){
-                    tabuleiro[ponto.x][ponto.y]=sem_jogador;
-                    break;
-                }
-            }
-            tabuleiro[ponto.x][ponto.y]=sem_jogador;
-        }
-        return turno ==jogador_X ? max:min;
-    }
+   
     // Função para forçar a facilitar o jogo
     public void setRRules(){
      

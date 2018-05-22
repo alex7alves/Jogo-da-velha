@@ -153,7 +153,6 @@ public class Tabuleiro extends javax.swing.JFrame {
                     }
                     if(vez==true){
                        Ponto usuario = getPonto();
-                       System.out.println("Ponto "+usuario.toString());
                        ok=map.isJogou(usuario, MapaTab.jogador_O);
                     }
                     vez=false;
@@ -165,11 +164,9 @@ public class Tabuleiro extends javax.swing.JFrame {
                     profundidade = map.getGerar().size();
                 }
                 map.minimax(profundidade,1);
-                System.out.println("\n Cot max e min "+ map.getContMax() +" "+map.getContMin());
                 if(dificil){
                     map.setRRules();
                 }
-                System.out.println("Computador escolheu o ponto "+ map.MovimentoComputador);
                 setInterface(map.MovimentoComputador.x,map.MovimentoComputador.y);
                 setMapa(map.MovimentoComputador.x,map.MovimentoComputador.y,"X");
                 map.isJogou(map.MovimentoComputador, MapaTab.jogador_X);
